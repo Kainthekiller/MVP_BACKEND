@@ -37,8 +37,19 @@ public class PMCS {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     Integer pagePmcsStart;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    String link;
+
     //Getter and Setters
 
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
 
     public LocalDate getPublishDate() {
         return publishDate;
