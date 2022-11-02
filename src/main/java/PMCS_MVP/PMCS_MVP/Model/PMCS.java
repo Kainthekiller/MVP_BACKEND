@@ -43,7 +43,7 @@ public class PMCS {
     //Getter and Setters
 
 
-    public String getLigit addnk() {
+    public String getLink() {
         return link;
     }
 

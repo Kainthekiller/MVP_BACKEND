@@ -3,6 +3,7 @@ package PMCS_MVP.PMCS_MVP.Controller;
 
 import PMCS_MVP.PMCS_MVP.Model.PMCS;
 import PMCS_MVP.PMCS_MVP.Repo.PMCSRepo;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -49,6 +50,12 @@ public class PMCSController {
         }
 
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/byEquipmentName/{name}")
+    List<PMCS> byEquipmentName(@PathVariable String name)
+    {
+        return pmcsRepo.findByItemNameContaining(name);
     }
 
     //UPDATE
