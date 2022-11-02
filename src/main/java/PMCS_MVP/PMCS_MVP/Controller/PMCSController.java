@@ -73,7 +73,7 @@ public class PMCSController {
                     case  "publishDate" -> holder.setPublishDate(LocalDate.parse(entry.getValue()));
                     case  "tmNumber" -> holder.setTmNumber(entry.getValue());
                     case  "pageCount" -> holder.setPageCount(Integer.valueOf(entry.getValue()));
-                    case   "pagePmcsStart" -> holder.setPagePmcsStart(Integer.valueOf(entry.getValue()));
+                    case  "pagePmcsStart" -> holder.setPagePmcsStart(Integer.valueOf(entry.getValue()));
                 }
             }
             return new ResponseEntity<>(pmcsRepo.save(holder), HttpStatus.OK);
