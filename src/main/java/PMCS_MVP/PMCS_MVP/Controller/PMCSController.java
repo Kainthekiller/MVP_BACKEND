@@ -58,28 +58,8 @@ public class PMCSController {
         return pmcsRepo.findByItemNameContaining(name);
     }
 
-    //UPDATE
-    @PatchMapping("{id}")
-    ResponseEntity<PMCS> patchOnePMCS(@PathVariable Long id, @RequestBody Map<String, String> body)
-    {
-        if(pmcsRepo.findById(id).isPresent())
-        {
-            PMCS holder = pmcsRepo.findById(id).get();
-            for (Map.Entry<String, String> entry: body.entrySet())
-            {
-                switch (entry.getKey())
-                {
-                    case  "itemName" -> holder.setItemName(entry.getValue());
-                    case  "publishDate" -> holder.setPublishDate(LocalDate.parse(entry.getValue()));
-                    case  "tmNumber" -> holder.setTmNumber(entry.getValue());
-                    case  "pageCount" -> holder.setPageCount(Integer.valueOf(entry.getValue()));
-                    case  "pagePmcsStart" -> holder.setPagePmcsStart(Integer.valueOf(entry.getValue()));
-                }
-            }
-            return new ResponseEntity<>(pmcsRepo.save(holder), HttpStatus.OK);
-        }
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-    }
+
+
 
     //Delete
     @DeleteMapping("{id}")
@@ -96,7 +76,33 @@ public class PMCSController {
         }
 
     }
+    //UPDATE
+    //Patch Mapping
+    @PatchMapping("{id}")
+    ResponseEntity<PMCS> updateTM(@PathVariable Long id, @RequestBody Map<String, String> body)
+    {
+        if (pmcsRepo.findById(id).isPresent())
+        {
+            PMCS holder = pmcsRepo.findById(id).get();
 
+            for (Map.Entry<String, String> entry : body.entrySet())
+            {
+                switch (entry.getKey())
+                {
+                    case "itemName" -> holder.setItemName(entry.getValue());
+                    case "publishDate" -> holder.setPublishDate(LocalDate.parse(entry.getValue()));
+                    case "tmNumber" -> holder.setTmNumber(entry.getValue());
+                    case "pageCount" -> holder.setPageCount(Integer.parseInt(entry.getValue()));
+                    case "pagePmcsStart" -> holder.setPagePmcsStart(Integer.parseInt(entry.getValue()));
+                    case "link" -> holder.setLink(entry.getValue());
+                    case "imgLink" -> holder.setImgLink(entry.getValue());
+
+                }
+            }
+            return new ResponseEntity<>(pmcsRepo.save(holder), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
 
 
 

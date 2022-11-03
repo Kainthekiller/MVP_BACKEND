@@ -40,8 +40,18 @@ public class PMCS {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     String link;
 
-    //Getter and Setters
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    String imgLink;
 
+
+//Getter and Setters
+public String getImgLink() {
+    return imgLink;
+}
+
+    public void setImgLink(String imgLink) {
+        this.imgLink = imgLink;
+    }
 
     public String getLink() {
         return link;
