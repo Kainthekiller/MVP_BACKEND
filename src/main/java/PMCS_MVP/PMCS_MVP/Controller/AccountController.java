@@ -52,6 +52,17 @@ public class AccountController {
         return accountRepo.findAll();
     }
 
+    @DeleteMapping("{id}")
+    ResponseEntity<Account> deleteAccount(@PathVariable Long id)
+    {
+        if (accountRepo.findById(id).isPresent())
+        {
+            accountRepo.deleteById(id);
+            return new ResponseEntity<>(null,  HttpStatus.OK);
+        }
+        return new ResponseEntity<>(null,  HttpStatus.NOT_FOUND);
+    }
+
 
 
 }
