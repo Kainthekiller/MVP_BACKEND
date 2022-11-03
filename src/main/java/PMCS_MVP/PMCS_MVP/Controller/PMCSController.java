@@ -81,6 +81,22 @@ public class PMCSController {
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
+    //Delete
+    @DeleteMapping("{id}")
+    ResponseEntity<PMCS> deleteTM(@PathVariable Long id)
+    {
+        if (pmcsRepo.findById(id).isPresent())
+        {
+            pmcsRepo.deleteById(id);
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        }
+        else
+        {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+
+    }
+
 
 
 
